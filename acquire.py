@@ -13,7 +13,7 @@ def get_codeup_blog(url):
     # Get the http response object from the server
     response = get(url, headers=headers)
     
-    soup = BeautifulSoup(response.text)
+    soup = BeautifulSoup(response.text, features="lxml")
     
     title = soup.find("h1").text
     published_date = soup.time.text
@@ -89,7 +89,7 @@ def get_articles(category):
     response = get(url, headers=headers)
 
     # Make soup out of the raw html
-    soup = BeautifulSoup(response.text)
+    soup = BeautifulSoup(response.text, features="lxml")
     
     # Ignore everything, focusing only on the news cards
     articles = soup.select(".news-card")
